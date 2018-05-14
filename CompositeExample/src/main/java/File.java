@@ -1,4 +1,4 @@
-public class File {
+public class File implements IStorageObject {
     private String name;
 
     public File(String name) {

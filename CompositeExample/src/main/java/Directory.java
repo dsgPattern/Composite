@@ -1,6 +1,7 @@
+import java.time.chrono.IsoChronology;
 import java.util.ArrayList;
 
-public class Directory {
+public class Directory implements IStorageObject {
     private String name;
     private ArrayList includedFiles = new ArrayList();
 
@@ -17,12 +18,9 @@ public class Directory {
         CompositeDemo.compositeBuilder.append("   ");
         for (Object obj : includedFiles) {
             // Recover the type of this object - how can we fix this using Composite?
-            String name = obj.getClass().getSimpleName();
-            if (name.equals("Directory")) {
-                ((Directory)obj).ls();
-            } else {
-                ((File)obj).ls();
-            }
+            IStorageObject storageObject=(IStorageObject)obj;
+            storageObject.ls();
+
         }
         CompositeDemo.compositeBuilder.setLength(CompositeDemo.compositeBuilder.length() - 3);
     }
